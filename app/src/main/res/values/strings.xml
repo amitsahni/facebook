@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Facebook</string>
+    <string name="fb_app_id" translatable="false">127685414481161</string>
+</resources>

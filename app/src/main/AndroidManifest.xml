@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+          package="com.fb">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:icon="@mipmap/ic_launcher"
+                 android:roundIcon="@mipmap/ic_launcher_round"
+                 android:supportsRtl="true"
+                 android:name="android.support.multidex.MultiDexApplication"
+                 tools:ignore="GoogleAppIndexingWarning"
+                 android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Facebook Integration -->
+        <activity
+                android:name="com.facebook.FacebookActivity"
+                android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                android:label="@string/app_name"
+                android:screenOrientation="portrait"/>
+
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="@string/fb_app_id"/>
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationName"
+                android:value="@string/app_name"/>
+
+        <meta-data
+                android:name="io.fabric.ApiKey"
+                android:value="7d151975b4c56cc85541b5bd637ec670ce343d8a"/>
+    </application>
+</manifest>
