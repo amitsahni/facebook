@@ -1,12 +1,15 @@
-package com.facebook
+package com.auth.facebook
 
 import android.app.Activity
 import android.content.Context
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.facebook.callback.OnCancel
-import com.facebook.callback.OnError
-import com.facebook.callback.OnSuccess
+import com.auth.facebook.callback.OnCancel
+import com.auth.facebook.callback.OnError
+import com.auth.facebook.callback.OnSuccess
+import com.facebook.AccessToken
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.UserInfo
 
@@ -54,7 +57,8 @@ class RequestBuilder {
         fun build() {
             LoginManager.getInstance()
                     .logInWithReadPermissions(activity, permissions)
-            LoginManager.getInstance().registerCallback(FacebookConnect.callbackManager, object : FacebookCallback<LoginResult> {
+            LoginManager.getInstance().registerCallback(FacebookConnect.callbackManager, object :
+                FacebookCallback<LoginResult> {
                 override fun onSuccess(loginResult: LoginResult) {
                     AccessToken.setCurrentAccessToken(loginResult.accessToken)
                     successCallback?.onSuccess(loginResult)

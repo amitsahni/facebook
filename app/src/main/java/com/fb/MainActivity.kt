@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.TextView
-import com.facebook.FacebookConnect
+import com.auth.facebook.FacebookConnect
 import com.facebook.FacebookSdk
 import com.facebook.internal.CallbackManagerImpl
 import kotlinx.android.synthetic.main.activity_main.*

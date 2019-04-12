@@ -1,10 +1,12 @@
-package com.facebook
+package com.auth.facebook
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.util.Base64
 import android.util.Log
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo

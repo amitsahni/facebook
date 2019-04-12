@@ -1,4 +1,4 @@
-package com.facebook
+package com.auth.facebook
 
 import android.app.Activity
 import android.content.Context
