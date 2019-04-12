@@ -18,13 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        FacebookConnect.getKeyHash(this);
-        //        FacebookConfiguration.isDebug(true).config(getApplication());
-        //        TwitterConfiguration.keys(TWITTER_KEY, TWITTER_SECRET)
-        //                .isDebug(true)
-        //                .config(this);
-
-
+        FacebookConnect.getKeyHash(this)
         googleFb.setOnClickListener {
             val user = FacebookConnect.user
             if (user == null) {
