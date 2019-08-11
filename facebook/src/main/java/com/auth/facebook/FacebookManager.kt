@@ -1,5 +1,6 @@
 package com.auth.facebook
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -7,14 +8,15 @@ import android.util.Base64
 import android.util.Log
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
-import com.google.firebase.FirebaseApp
+import com.facebook.FacebookSdk
+import com.facebook.internal.CallbackManagerImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
-object FacebookConnect {
+object FacebookManager {
     @JvmStatic
     val callbackManager = CallbackManager.Factory.create()
 
@@ -40,18 +42,6 @@ object FacebookConnect {
         }
     }
 
-    /**
-     * With builder.
-     *
-     * @param context the context
-     * @return the builder
-     */
-    @JvmStatic
-    fun with(): Builder {
-        return Builder()
-
-    }
-
     @JvmStatic
     val accessToken = AccessToken.getCurrentAccessToken()
 
@@ -66,7 +56,17 @@ object FacebookConnect {
 
     @JvmStatic
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (FacebookSdk.isFacebookRequestCode(requestCode)) {
+                //Facebook activity result
+                //Do your stuff here
+                //Further you can also check if it's login or Share etc by using
+                if (requestCode == CallbackManagerImpl.RequestCodeOffset.Login.toRequestCode()) {
+                    //login
+                    callbackManager?.onActivityResult(requestCode, resultCode, data)
+                }
+            }
+        }
     }
 
     @JvmStatic
