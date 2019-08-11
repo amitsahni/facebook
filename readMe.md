@@ -22,28 +22,30 @@
 To get `KeyHash`
 
 ```
-FacebookConnect.getKeyHash(this)
+FacebookManager.getKeyHash(this)
 ```
 `Login Sample`
 
 ```kotlin
-val user = FacebookConnect.user
+val user = FacebookManager.user
             if (user == null) {
-                FacebookConnect.with()
-                    .login(this)
-                    .success {
-                        FacebookConnect.with()
-                            .profile(this@MainActivity)
-                            .success {
-                                Log.i(
-                                    localClassName,
-                                    displayName + " " + email + "" + phoneNumber
-                                )
-                                Unit
-                            }.build()
-                    }
-                    .error {
-                    }.build()
+                login({
+                    com.auth.facebook.profile({
+                        Log.i(
+                            localClassName,
+                            it.displayName + " " + it.email + "" + it.phoneNumber
+                        )
+                    }, {
+                        it.printStackTrace()
+                    })
+                }, {
+                    it.printStackTrace()
+                }, {
+                    Log.i(
+                        localClassName,
+                        "User Cancelled"
+                    )
+                })
             } else {
                 Log.i(localClassName + "Facebook", user.displayName + " " + user.email + "" + user.phoneNumber)
             }
@@ -53,26 +55,20 @@ val user = FacebookConnect.user
 `Profile Sample`
 
 ```kotlin
-       FbConnect.with()
-                .profile(this)
-                .otherUserId("")
-                .success { 
-                    
-                }.error { 
-                    
-                }.build()
+profile({
+                        Log.i(
+                            localClassName,
+                            it.displayName + " " + it.email + "" + it.phoneNumber
+                        )
+                    }, {
+                        it.printStackTrace()
+                    })
 ```
 
 `OnActivityResult`
 
 ```kotlin
-if (resultCode == Activity.RESULT_OK) {
-            if (FacebookSdk.isFacebookRequestCode(requestCode)) {
-                if (requestCode == CallbackManagerImpl.RequestCodeOffset.Login.toRequestCode()) {
-                    FbConnect.get().onActivityResult(requestCode, resultCode, data);
-                }
-            }
-        }
+FacebookManager.onActivityResult(requestCode, resultCode, data!!)
 ```
 
 
@@ -85,5 +81,5 @@ repositories {
 ```
 
 ```groovy
-implementation 'com.amitsahni:facebook:0.0.1-alpha03'
+implementation 'com.amitsahni:facebook:0.0.1-alpha05'
 ```

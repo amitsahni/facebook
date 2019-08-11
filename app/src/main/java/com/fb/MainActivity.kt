@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.TextView
 import com.auth.facebook.FacebookManager
 import com.auth.facebook.login
+import com.auth.facebook.profile
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             val user = FacebookManager.user
             if (user == null) {
                 login({
-                    com.auth.facebook.profile({
+                    profile({
                         Log.i(
                             localClassName,
                             it.displayName + " " + it.email + "" + it.phoneNumber
